@@ -20,7 +20,7 @@ with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
 setup(
     name='yumpu-sdk',
 
-    version='0.1.0a1',
+    version='0.1.0',
 
     description='Python SDK for Yumpu API',
     long_description=long_description,

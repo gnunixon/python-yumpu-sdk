@@ -34,7 +34,10 @@ class Yumpu():
 
     def do_get(self, entry_point, params={}):
         """
-        This function is for getting information from API.
+        This function is for getting information from API. It's a general
+        function and you can use it for make strange things like send very
+        customized requests to API, but in general case you don't need
+        to use this method ever.
 
         :param entry_point: relative url for sending request
         :type entry_point: str
@@ -51,6 +54,8 @@ class Yumpu():
     def do_post(self, entry_point, params={}, filename=None):
         """
         This is a general function for post something to Yumpu API.
+        It's a very general function, and is better to use somthing more
+        specific.
 
         :param entry_point: the URL where we will send the datas
         :type entry_point: str
