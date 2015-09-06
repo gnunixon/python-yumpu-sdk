@@ -31,6 +31,7 @@ class Yumpu():
             yumpu = Yumpu('YOUR_TOKEN_HERE')
         """
         self.token = token
+        self.headers = {'X-ACCESS-TOKEN': self.token}
 
     def do_get(self, entry_point, params={}):
         """
@@ -46,9 +47,8 @@ class Yumpu():
         :returns: the result of request
         :rtype: json
         """
-        headers = {'X-ACCESS-TOKEN': self.token}
         url = "%s%s" % (BASE_URL, entry_point)
-        r = requests.get(url, headers=headers, params=params)
+        r = requests.get(url, headers=self.headers, params=params)
         return r.json()
 
     def do_post(self, entry_point, params={}, filename=None):
@@ -67,11 +67,26 @@ class Yumpu():
         :rtype: json
         """
         url = "%s%s" % (BASE_URL, entry_point)
-        headers = {'X-ACCESS-TOKEN': self.token}
         files = None
         if filename:
             files = {'file': open(filename, 'rb')}
-        r = requests.post(url, headers=headers, data=params, files=files)
+        r = requests.post(url, headers=self.headers, data=params, files=files)
+        return r.json()
+
+    def do_delete(self, entry_point, id):
+        """
+        This is a general function for deleting things on Yumpu.
+
+        :param entry_point: the relative url for send request to delete items
+        :type entry_point: str
+        :param id: the id of deleting item
+        :type id: int
+        :returns: the result of deleting action
+        :rtype: json
+        """
+        url = "%s%s" % (BASE_URL, entry_point)
+        params = {'id': id}
+        r = requests.delete(url, headers=self.headers, data=params)
         return r.json()
 
     def documents_get(self, offset=0, limit=10, sort='desc', return_fields=[]):
@@ -248,6 +263,18 @@ class Yumpu():
             'itc_product_id': itc_product_id
         }
         return self.do_post(entry_point, params)
+
+    def document_delete(self, id):
+        """
+        This function will delete the document on Yumpu.
+
+        :param id: the id of document to delete
+        :type id: int
+        :returns: the result of deleting action
+        :rtype: json
+        """
+        entry_point = '/document/delete.json'
+        return self.do_delete(entry_point, id)
 
     def progess_get(self, id):
         """

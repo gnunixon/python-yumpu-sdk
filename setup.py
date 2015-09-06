@@ -20,7 +20,7 @@ with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
 setup(
     name='yumpu-sdk',
 
-    version='0.1.0',
+    version='0.1.2',
 
     description='Python SDK for Yumpu API',
     long_description=long_description,
@@ -41,7 +41,7 @@ setup(
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
 
         # Indicate who your project is intended for
         'Intended Audience :: Developers',
@@ -59,6 +59,7 @@ setup(
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Operating System :: OS Independent',
     ],
 
     # What does your project relate to?
