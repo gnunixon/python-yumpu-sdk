@@ -120,6 +120,49 @@ class Yumpu():
         :type return_fields: list
         :returns: list of documents
         :rtype: json
+
+        :Example:
+
+            >>> from yumpu_sdk.api import Yumpu
+            >>> yumpu = Yumpu('YOUR_TOKEN_HERE')
+            >>> yumpu.documents_get()
+            {
+                u'completed_in': u'0.0584',
+                u'state': u'success',
+                u'total': u'2',
+                u'documents': [
+                    {
+                        u'embed_code': u'<iframe width="512px" height="384px" src="https://www.yumpu.com/en/embed/view/lgjvMHH2ugIUSzdL" frameborder="0" allowfullscreen="true" allowtransparency="true"></iframe>',
+                        u'description': u'',
+                        u'language': u'en',
+                        u'title': u'Test file',
+                        u'url': u'http://www.yumpu.com/en/document/view/53486950/test-file',
+                        u'short_url': u'http://www.yumpu.com/s/jl0EutaH0Z7UI3KP',
+                        u'image': {
+                            u'small': u'http://img.yumpu.com/53486950/1/117x156/test-file.jpg',
+                            u'big': u'http://img.yumpu.com/53486950/1/1200x1600/test-file.jpg',
+                            u'medium': u'http://img.yumpu.com/53486950/1/480x640/test-file.jpg'
+                        },
+                        u'tags': False,
+                        u'id': u'53486950'
+                    },
+                    {
+                        u'embed_code': u'<iframe width="512px" height="384px" src="https://www.yumpu.com/en/embed/view/0XDrujBssWG7uUQN" frameborder="0" allowfullscreen="true" allowtransparency="true"></iframe>',
+                        u'description': u'',
+                        u'language': u'en',
+                        u'title': u'ACTIV-rom-22(78)-tipar.pdf',
+                        u'url': u'http://www.yumpu.com/en/document/view/53312964/activ-rom-2278-tiparpdf',
+                        u'short_url': u'http://www.yumpu.com/s/KAZWUpZLoZxNQZd0',
+                        u'image': {
+                            u'small': u'http://img.yumpu.com/53312964/1/115x163/activ-rom-2278-tiparpdf.jpg',
+                            u'big': u'http://img.yumpu.com/53312964/1/1129x1600/activ-rom-2278-tiparpdf.jpg',
+                            u'medium': u'http://img.yumpu.com/53312964/1/452x640/activ-rom-2278-tiparpdf.jpg'
+                        },
+                        u'tags': False,
+                        u'id': u'53312964'
+                    }
+                ]
+            }
         """
         entry_point = '/documents.json'
         params = {
@@ -142,12 +185,6 @@ class Yumpu():
         :returns: datas about one specific document
         :rtype: json
 
-        :Example:
-
-            >>> from yumpu_sdk.api import Yumpu
-            >>> yumpu = Yumpu('Y7j7dN3nexaii5sHjIOXin1G8f6cHZRY')
-            >>> yumpu.documents_get()
-            {u'completed_in': u'0.0584', u'state': u'success', u'total': u'2', u'documents': [{u'embed_code': u'<iframe width="512px" height="384px" src="https://www.yumpu.com/en/embed/view/lgjvMHH2ugIUSzdL" frameborder="0" allowfullscreen="true" allowtransparency="true"></iframe>', u'description': u'', u'language': u'en', u'title': u'Test file', u'url': u'http://www.yumpu.com/en/document/view/53486950/test-file', u'short_url': u'http://www.yumpu.com/s/jl0EutaH0Z7UI3KP', u'image': {u'small': u'http://img.yumpu.com/53486950/1/117x156/test-file.jpg', u'big': u'http://img.yumpu.com/53486950/1/1200x1600/test-file.jpg', u'medium': u'http://img.yumpu.com/53486950/1/480x640/test-file.jpg'}, u'tags': False, u'id': u'53486950'}, {u'embed_code': u'<iframe width="512px" height="384px" src="https://www.yumpu.com/en/embed/view/0XDrujBssWG7uUQN" frameborder="0" allowfullscreen="true" allowtransparency="true"></iframe>', u'description': u'', u'language': u'en', u'title': u'ACTIV-rom-22(78)-tipar.pdf', u'url': u'http://www.yumpu.com/en/document/view/53312964/activ-rom-2278-tiparpdf', u'short_url': u'http://www.yumpu.com/s/KAZWUpZLoZxNQZd0', u'image': {u'small': u'http://img.yumpu.com/53312964/1/115x163/activ-rom-2278-tiparpdf.jpg', u'big': u'http://img.yumpu.com/53312964/1/1129x1600/activ-rom-2278-tiparpdf.jpg', u'medium': u'http://img.yumpu.com/53312964/1/452x640/activ-rom-2278-tiparpdf.jpg'}, u'tags': False, u'id': u'53312964'}]}
 
         """
         entry_point = '/document.json'
