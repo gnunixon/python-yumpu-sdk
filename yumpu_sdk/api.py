@@ -507,7 +507,7 @@ class Yumpu():
         }
         return self.do_post(entry_point, params)
 
-    def document_put_url(
+    def document_put(
         self, id, title,
         description=None,
         category=0,
@@ -848,6 +848,66 @@ class Yumpu():
             'name': name,
         }
         return self.do_post(entry_point, params=params)
+
+    def collection_put(self, id, name):
+        """
+        Update a collection with given id.
+
+        :param str id: the id of collection to update
+        :param str name: the name for update
+        :returns: the status of operation and the edited collection
+        :rtype: json
+
+        >>> from yumpu_sdk.api import Yumpu
+        >>> yumpu = Yumpu('YOUR_TOKEN_HERE')
+        >>> yumpu.collection_put('omkYGduXowlyx9WF', 'Holidays 2013')
+        {
+            "collection": [
+                {
+                    "id": "omkYGduXowlyx9WF",
+                    "create_date": "2013-09-23 09:05:47",
+                    "update_date": "2013-09-23 09:11:45",
+                    "name": "Holidays 2013",
+                    "order": 0,
+                    "sections": [
+                        {
+                            "id": "omkYGduXowlyx9WF_stVFPUYW3kHX07B6",
+                            "name": "",
+                            "description": "",
+                            "sorting": "manually",
+                            "order": 0
+                        }
+                    ]
+                }
+            ],
+            "state": "success"
+        }
+        """
+        entry_point = '/collection.json'
+        params = {
+            'id': id,
+            'name': name,
+        }
+        return self.do_put(entry_point, params)
+
+    def collection_delete(self, id):
+        """
+        This method will delete a collection with given id.
+
+        :param str id: the id of collection to delete
+        :returns: the state of operation
+        :rtype: json
+
+        >>> from yumpu_sdk.api import Yumpu
+        >>> yumpu = Yumpu('YOUR_TOKEN_HERE')
+        >>> yumpu.collection_delete('omkYGduXowlyx9WF')
+        {"state":"success"}
+        """
+        entry_point = '/collection.json'
+        params = {
+            'id': id,
+        }
+        return self.do_delete(entry_point, params)
 
     def section_get(self, id, return_fields=[]):
         """
