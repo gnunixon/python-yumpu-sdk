@@ -602,7 +602,7 @@ class Yumpu():
         :param itc_product_id: iTunes Product ID
         :type itc_product_id: str
         """
-        entry_point = '/document/url.json'
+        entry_point = '/document.json'
         params = {
             'id': id,
             'title': title,
@@ -646,7 +646,7 @@ class Yumpu():
         :returns: the result of deleting action
         :rtype: json
         """
-        entry_point = '/document/delete.json'
+        entry_point = '/document.json'
         return self.do_delete(entry_point, id)
 
     def progess_get(self, id):
