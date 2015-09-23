@@ -21,8 +21,7 @@ class Yumpu():
         """
         For begin working with Yumpu you need to specify your token.
 
-        :params token: the token for working with API. You can obtain it on https://www.yumpu.com/en/account/profile/api
-        :type token: str
+        :params str token: the token for working with API. You can obtain it on https://www.yumpu.com/en/account/profile/api
 
         :Example:
 
@@ -41,10 +40,8 @@ class Yumpu():
         customized requests to API, but in general case you don't need
         to use this method ever.
 
-        :param entry_point: relative url for sending request
-        :type entry_point: str
-        :param params: a dict with GET params to send
-        :type params: dict
+        :param str entry_point: relative url for sending request
+        :param dict params: a dict with GET params to send
         :returns: the result of request
         :rtype: json
         """
@@ -58,12 +55,9 @@ class Yumpu():
         It's a very general function, and is better to use somthing more
         specific.
 
-        :param entry_point: the URL where we will send the datas
-        :type entry_point: str
-        :param params: a dict of fields and values for sending
-        :type params: dict
-        :param filename: an absolute path to file for sending
-        :type filename: str
+        :param str entry_point: the URL where we will send the datas
+        :param dict params: a dict of fields and values for sending
+        :param str filename: an absolute path to file for sending
         :returns: a response with detailed data of resulted action
         :rtype: json
         """
@@ -78,10 +72,8 @@ class Yumpu():
         """
         This is a general function for deleting things on Yumpu.
 
-        :param entry_point: the relative url for send request to delete items
-        :type entry_point: str
-        :param id: the id of deleting item
-        :type id: int or str
+        :param str entry_point: the relative url for send request to delete items
+        :param str id: the id of deleting item
         :returns: the result of deleting action
         :rtype: json
         """
@@ -95,10 +87,8 @@ class Yumpu():
         This is a general function for send PUT requests to Yumpu API.
         Is used by other functions for update things on Yumpu.
 
-        :param entry_point: the relative path where to send datas
-        :type entry_point: str
-        :param params: the params to send
-        :type params: dict
+        :param str entry_point: the relative path where to send datas
+        :param dict params: the params to send
         :returns: the result of request
         :rtype: json
         """
@@ -110,14 +100,10 @@ class Yumpu():
         """
         Retrieve a list of your documents.
 
-        :param offset: Retrieve rows at position X (min. 0). Default is 0.
-        :type offset: int
-        :param limit: Retrieve X rows (min. 0 and max. 100). Default is 10.
-        :type limit: int
-        :param sort: Sort results ascending or descendening (asc or desc). Default is desc.
-        :type sort: str
-        :param return_fields: Customize the responses by setting the return fields (id, create_date, update_date, url, short_url, image_small, image_medium, image_big, language, title, description, tags, embed_code, settings)
-        :type return_fields: list
+        :param int offset: Retrieve rows at position X (min. 0). Default is 0.
+        :param int limit: Retrieve X rows (min. 0 and max. 100). Default is 10.
+        :param str sort: Sort results ascending or descendening (asc or desc). Default is desc.
+        :param list return_fields: Customize the responses by setting the return fields (id, create_date, update_date, url, short_url, image_small, image_medium, image_big, language, title, description, tags, embed_code, settings)
         :returns: list of documents
         :rtype: json
 
@@ -176,10 +162,8 @@ class Yumpu():
         """
         Retrieve one document.
 
-        :param id: id of one of your documents
-        :type id: int
-        :param return_fields: Customize the responses by setting the return fields (id, create_date, update_date, url, short_url, image_small, image_medium, image_big, language, title, description, tags, embed_code, settings)
-        :type param: list
+        :param int id: id of one of your documents
+        :param list return_fields: Customize the responses by setting the return fields (id, create_date, update_date, url, short_url, image_small, image_medium, image_big, language, title, description, tags, embed_code, settings)
         :returns: datas about one specific document
         :rtype: json
 
@@ -368,8 +352,7 @@ class Yumpu():
         """
         This function will delete the document on Yumpu.
 
-        :param id: the id of document to delete
-        :type id: int
+        :param int id: the id of document to delete
         :returns: the result of deleting action
         :rtype: json
         """
@@ -380,8 +363,7 @@ class Yumpu():
         """
         Show the progress of uploading and converting of document.
 
-        :param id: id of document
-        :type id: int
+        :param str id: id of progress object
         :returns: the details of uploading and coverting process
         :rtype: json
         """
@@ -528,12 +510,9 @@ class Yumpu():
         """
         Retrieve a list of your collections.
 
-        :param offset: Retrieve rows at position X (min. 0)
-        :type offset: int
-        :param limit: Retrieve X rows (min. 0 and max. 100)
-        :type limit: int
-        :param return_fields: Customize the responses by setting the return fields (id, create_date, update_date, name, order, sections)
-        :type return_fields: list
+        :param int offset: Retrieve rows at position X (min. 0)
+        :param int limit: Retrieve X rows (min. 0 and max. 100)
+        :param list return_fields: Customize the responses by setting the return fields (id, create_date, update_date, name, order, sections)
         """
         entry_point = '/collections.json'
         params = {
@@ -548,10 +527,8 @@ class Yumpu():
         """
         Retrieve one collection.
 
-        :param id: One of your collection ids
-        :type id: str
-        :param return_fields: Customize the responses by setting the return fields (id, create_date, update_date, name, order, sections)
-        :type return_fields: list
+        :param str id: One of your collection ids
+        :param list return_fields: Customize the responses by setting the return fields (id, create_date, update_date, name, order, sections)
         """
         entry_point = '/collection.json'
         params = {
@@ -565,8 +542,7 @@ class Yumpu():
         """
         Create a collection.
 
-        :param name: the name of new collection
-        :type name: str
+        :param str name: the name of new collection
         :returns: the details of new created collection
         :rtype: json
         """
@@ -637,8 +613,7 @@ class Yumpu():
         """
         Retrieve one section.
 
-        :param id: One of your section ids
-        :type id: str
+        :param str id: One of your section ids
         :param return_fields: Customize the responses by setting the return fields (id, create_date, update_date, name, description, sorting, order, documents)
         :type return_fields: list
         """
