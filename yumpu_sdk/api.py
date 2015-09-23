@@ -81,7 +81,7 @@ class Yumpu():
         :param entry_point: the relative url for send request to delete items
         :type entry_point: str
         :param id: the id of deleting item
-        :type id: int
+        :type id: int or str
         :returns: the result of deleting action
         :rtype: json
         """
@@ -904,10 +904,7 @@ class Yumpu():
         {"state":"success"}
         """
         entry_point = '/collection.json'
-        params = {
-            'id': id,
-        }
-        return self.do_delete(entry_point, params)
+        return self.do_delete(entry_point, id)
 
     def section_get(self, id, return_fields=[]):
         """
@@ -925,3 +922,132 @@ class Yumpu():
         if return_fields:
             params['return_fields'] = ','.join(return_fields)
         return self.do_get(entry_point, params)
+
+    def section_post(self, id, name, description=None, sorting='manually'):
+        """
+        Create a new section for given category.
+
+        :param str id: One of your collection ids
+        :param str name: The name of section
+        :param str description: Description of this section
+        :param str sorting: Sort documents in section manually or automatically (by create_date_desc, create_date_asc, title_desc, title_asc)
+
+        :returns: the datas of new created section
+        :rtype: json
+
+        >>> from yumpu_sdk.api import Yumpu
+        >>> yumpu = Yumpu('YOUR_TOKEN_HERE')
+        >>> yumpu.section_post('iMWWKoMS76pjqMoO', 'Sports', 'Sports')
+        {
+            "section": [
+                {
+                    "id": "F54wo1ijuIzhbSfK",
+                    "create_date": "2013-09-23 10:46:53",
+                    "update_date": "0000-00-00 00:00:00",
+                    "name": "Sports",
+                    "description": "Sports",
+                    "sorting": "manually",
+                    "order": 2,
+                    "documents": ""
+                }
+            ],
+            "state": "success"
+        }
+        """
+        entry_point = '/collection/section.json'
+        params = {
+            'id': id,
+            'name': name,
+            'description': description,
+            'sorting': sorting
+        }
+        return self.do_post(entry_point, params)
+
+    def section_put(self, id, name, description=None, sorting='manually'):
+        """
+        Create a new section for given category.
+
+        :param str id: One of your section ids
+        :param str name: The name of section
+        :param str description: Description of this section
+        :param str sorting: Sort documents in section manually or automatically (by create_date_desc, create_date_asc, title_desc, title_asc)
+
+        :returns: the datas of new created section
+        :rtype: json
+
+        >>> from yumpu_sdk.api import Yumpu
+        >>> yumpu = Yumpu('YOUR_TOKEN_HERE')
+        >>> yumpu.section_put('F54wo1ijuIzhbSfK', 'Sports 2013')
+        {
+            "section": [
+                {
+                    "id": "F54wo1ijuIzhbSfK",
+                    "create_date": "2013-09-23 10:46:53",
+                    "update_date": "2013-09-23 11:11:35",
+                    "name": "Sports 2013",
+                    "description": "Sports",
+                    "sorting": "create_date_desc",
+                    "order": 2,
+                    "documents": ""
+                }
+            ],
+            "state": "success"
+        }
+        """
+        entry_point = '/collection/section.json'
+        params = {
+            'id': id,
+            'name': name,
+            'sorting': sorting
+        }
+        if description:
+            params['description'] = description
+        return self.do_put(entry_point, params)
+
+    def section_delete(self, id):
+        """
+        Delete one of your sections
+
+        :param str id: The id of one of your sections
+        :returns: the status of operation
+        :rtype: json
+
+        >>> from yumpu_sdk.api import Yumpu
+        >>> yumpu = Yumpu('YOUR_TOKEN_HERE')
+        >>> yumpu.section_delete('omkYGduXowlyx9WF')
+        {"state":"success"}
+        """
+        entry_point = '/collection/section.json'
+        return self.do_delete(entry_point, id)
+
+    def section_document_post(self, id, documents):
+        """
+        Create a new document in section.
+
+        :param str id: one of your section ids
+        :param list documents: a list of your documents ids for add to this section
+        :returns: the content of section object
+        """
+        entry_point = '/collection/section/document.json'
+        params = {
+            'id': id,
+            'documents': ','.join(documents)
+        }
+        return self.do_post(entry_point, params)
+
+    def section_document_delete(self, id, documents):
+        """
+        Remove documents from section.
+
+        :param str id: one of your section ids
+        :param list documents: a list of your documents ids
+        :returns: the content of section object
+        """
+        entry_point = '/collection/section/document.json'
+        params = {
+            'id': id,
+            'documents': ','.join(documents)
+        }
+        url = "%s%s" % (BASE_URL, entry_point)
+        r = requests.delete(url, headers=self.headers, data=params)
+        return r.json()
