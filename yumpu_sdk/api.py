@@ -248,394 +248,121 @@ class Yumpu():
             params['return_fields'] = ','.join(return_fields)
         return self.do_get(entry_point, params)
 
-    def document_post_file(
-        self, title, filename,
-        description=None,
-        category=0,
-        language='en',
-        tags=None,
-        visibility='public',
-        domains=None,
-        validity=None,
-        blurred=None,
-        page_teaser_image=None,
-        page_teaser_page_range=None,
-        page_teaser_url=None,
-        downloadable='n',
-        detect_elements='y',
-        recommended_magazines='y',
-        social_sharing='y',
-        player_social_sharing='y',
-        player_download_pdf='n',
-        player_print_page='n',
-        player_branding='y',
-        player_sidebar='n',
-        player_html5_c2r='y',
-        player_outer_shadow='y',
-        player_inner_shadow='y',
-        player_ga=None,
-        access_tags=None,
-        subscriptions=None,
-        iap='n',
-        itc_product_id=None
-    ):
+    def document_post_file(self, **kwargs):
         """
         Create a new document from PDF.
 
-        :param title: A title for your document. Min. length 5 characters, max. length 255 characters
-        :type title: str
-        :param file: The full path to pdf for converting
-        :type file: str
-        :param description: A description for your document. Min. length 5 characters, max. length 2500 characters
-        :type description: str
-        :param category: 1, 2 or … (A list of valid category ids: Document categories)
-        :type category: int
-        :param language: en, de or … (A list of valid languages: Document languages)
-        :type language: str
-        :param tags: A list of words seperated by comma (house,garden,balcony). Min. length 3 characters, max. length 30 characters. Allowed characters a-z and a space.
-        :type tags: str
-        :param visibility: public, private, rprotected, pprotected, dprotected, webkiosk, appkiosk or webappkiosk (rprotected = protected by referrer, pprotected = protected by password, dprotected = protected by domain(s))
-        :type visibility: str
-        :param domains: A list of domains seperated by a comma (Note: Visibility must be set to dprotected) Examples: yumpu.com,blog.yumpu.com,developers.yumpu.com yumpu.com
-        :type domains: str
-        :param validity: Valid from and / or valid until Examples: 2013-10-01T00:00:00-2013-10-30T23:59:59 (valid from 2013-10-01 00:00:00, valid until 2013-10-30 23:59:59) 2013-10-01T00:00:00- (valid from 2013-10-01 00:00:00-) -2013-10-30T23:59:59 (valid until -2013-10-30 23:59:59)
-        :type validity: str
-        :param blurred: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
-        :type blurred: str
-        :param page_teaser_image: Image data The image must be less than 2 MB in size. Allowed mime types are image/gif, image/jpeg, image/pjpeg, image/png and image/x-png. The image will be resized to fit in the page dimensions (of your magazine). Note: If you use page_teaser_image, the parameters page_teaser_page_range and page_teaser_url are required.
-        :type page_teaser_image: str
-        :param page_teaser_page_range: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
-        :type page_teaser_page_range: str
-        :param page_teaser_url: A valid URL. Examples: http://www.yumpu.com/en
-        :type page_teaser_url: str
-        :param downloadable: Allow users to download your source pdf file. y or n
-        :type downloadable: str
-        :param detect_elements: Detect elements automatically? y or n
-        :type detect_elements: str
-        :param recommended_magazines: Show recommended magazines on Yumpu? y or n
-        :type recommended_magazines: str
-        :param social_sharing: Show social sharing buttons on Yumpu. y or n
-        :type social_sharing: str
-        :param player_social_sharing: Show social sharing buttons in Yumpu Player. y or n
-        :type player_social_sharing: str
-        :param player_download_pdf: Show button „download pdf“ in Yumpu Player. y or n
-        :type player_download_pdf: str
-        :param player_print_page: Show button „print page“ in Yumpu Player. y or n
-        :type player_print_page: str
-        :param player_branding: Show Yumpu branding in Yumpu Player. y or n
-        :type player_branding: str
-        :param player_sidebar: Show a list of recommended documents in Yumpu Player. y or n
-        :type player_sidebar: str
-        :param player_html5_c2r: Activate HTML5 full screen on Yumpu. y or n
-        :type player_html5_c2r: str
-        :param player_outer_shadow: Drop shadow in Yumpu player. y or n
-        :type player_outer_shadow: str
-        :param player_inner_shadow: Shadow effects on pages. y or n
-        :type player_inner_shadow: str
-        :param player_ga: Activate Google Analytics tracking. A valid UA code from Google Analytics.
-        :type player_ga: str
-        :param access_tags: One or multiple access_tag ids (myid1 or myid1,myid2)
-        :type access_tags: str
-        :param subscriptions: One or multiple subscription ids (myid1 or myid1,myid2)
-        :type subscriptions: str
-        :param iap: Enable In-App Purchase (y or n)
-        :type iap: str
-        :param itc_product_id: iTunes Product ID
-        :type itc_product_id: str
+        :param str title: A title for your document. Min. length 5 characters, max. length 255 characters
+        :param str file: The full path to pdf for converting
+        :param str description: A description for your document. Min. length 5 characters, max. length 2500 characters
+        :param int category: 1, 2 or … (A list of valid category ids: Document categories)
+        :param str language: en, de or … (A list of valid languages: Document languages)
+        :param str tags: A list of words seperated by comma (house,garden,balcony). Min. length 3 characters, max. length 30 characters. Allowed characters a-z and a space.
+        :param str visibility: public, private, rprotected, pprotected, dprotected, webkiosk, appkiosk or webappkiosk (rprotected = protected by referrer, pprotected = protected by password, dprotected = protected by domain(s))
+        :param str domains: A list of domains seperated by a comma (Note: Visibility must be set to dprotected) Examples: yumpu.com,blog.yumpu.com,developers.yumpu.com yumpu.com
+        :param str validity: Valid from and / or valid until Examples: 2013-10-01T00:00:00-2013-10-30T23:59:59 (valid from 2013-10-01 00:00:00, valid until 2013-10-30 23:59:59) 2013-10-01T00:00:00- (valid from 2013-10-01 00:00:00-) -2013-10-30T23:59:59 (valid until -2013-10-30 23:59:59)
+        :param str blurred: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
+        :param str page_teaser_image: Image data The image must be less than 2 MB in size. Allowed mime types are image/gif, image/jpeg, image/pjpeg, image/png and image/x-png. The image will be resized to fit in the page dimensions (of your magazine). Note: If you use page_teaser_image, the parameters page_teaser_page_range and page_teaser_url are required.
+        :param str page_teaser_page_range: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
+        :param str page_teaser_url: A valid URL. Examples: http://www.yumpu.com/en
+        :param str downloadable: Allow users to download your source pdf file. y or n
+        :param str detect_elements: Detect elements automatically? y or n
+        :param str recommended_magazines: Show recommended magazines on Yumpu? y or n
+        :param str social_sharing: Show social sharing buttons on Yumpu. y or n
+        :param str player_social_sharing: Show social sharing buttons in Yumpu Player. y or n
+        :param str player_download_pdf: Show button „download pdf“ in Yumpu Player. y or n
+        :param str player_print_page: Show button „print page“ in Yumpu Player. y or n
+        :param str player_branding: Show Yumpu branding in Yumpu Player. y or n
+        :param str player_sidebar: Show a list of recommended documents in Yumpu Player. y or n
+        :param str player_html5_c2r: Activate HTML5 full screen on Yumpu. y or n
+        :param str player_outer_shadow: Drop shadow in Yumpu player. y or n
+        :param str player_inner_shadow: Shadow effects on pages. y or n
+        :param str player_ga: Activate Google Analytics tracking. A valid UA code from Google Analytics.
+        :param str access_tags: One or multiple access_tag ids (myid1 or myid1,myid2)
+        :param str subscriptions: One or multiple subscription ids (myid1 or myid1,myid2)
+        :param str iap: Enable In-App Purchase (y or n)
+        :param str itc_product_id: iTunes Product ID
         """
         entry_point = '/document/file.json'
-        params = {
-            'title': title,
-            'description': description,
-            'category': category,
-            'language': language,
-            'tags': tags,
-            'visibility': visibility,
-            'domains': domains,
-            'validity': validity,
-            'blurred': blurred,
-            'page_teaser_image': page_teaser_image,
-            'page_teaser_page_range': page_teaser_page_range,
-            'page_teaser_url': page_teaser_url,
-            'downloadable': downloadable,
-            'detect_elements': detect_elements,
-            'recommended_magazines': recommended_magazines,
-            'social_sharing': social_sharing,
-            'player_social_sharing': player_social_sharing,
-            'player_download_pdf': player_download_pdf,
-            'player_print_page': player_print_page,
-            'player_branding': player_branding,
-            'player_sidebar': player_sidebar,
-            'player_html5_c2r': player_html5_c2r,
-            'player_outer_shadow': player_outer_shadow,
-            'player_inner_shadow': player_inner_shadow,
-            'player_ga': player_ga,
-            'access_tags': access_tags,
-            'subscriptions': subscriptions,
-            'iap': iap,
-            'itc_product_id': itc_product_id
-        }
-        return self.do_post(entry_point, params, filename)
+        filename = kwargs.get('filename', None)
+        kwargs.pop('filename')
+        return self.do_post(entry_point, kwargs, filename)
 
-    def document_post_url(
-        self, title, url,
-        description=None,
-        category=0,
-        language='en',
-        tags=None,
-        visibility='public',
-        domains=None,
-        validity=None,
-        blurred=None,
-        page_teaser_image=None,
-        page_teaser_page_range=None,
-        page_teaser_url=None,
-        downloadable='n',
-        detect_elements='y',
-        recommended_magazines='y',
-        social_sharing='y',
-        player_social_sharing='y',
-        player_download_pdf='n',
-        player_print_page='n',
-        player_branding='y',
-        player_sidebar='n',
-        player_html5_c2r='y',
-        player_outer_shadow='y',
-        player_inner_shadow='y',
-        player_ga=None,
-        access_tags=None,
-        subscriptions=None,
-        iap='n',
-        itc_product_id=None
-    ):
+    def document_post_url(self, **kwargs):
         """
         Create a new document from PDF placed on given URL.
 
-        :param title: A title for your document. Min. length 5 characters, max. length 255 characters
-        :type title: str
-        :param url: The URL of PDF
-        :type url: str
-        :param description: A description for your document. Min. length 5 characters, max. length 2500 characters
-        :type description: str
-        :param category: 1, 2 or … (A list of valid category ids: Document categories)
-        :type category: int
-        :param language: en, de or … (A list of valid languages: Document languages)
-        :type language: str
-        :param tags: A list of words seperated by comma (house,garden,balcony). Min. length 3 characters, max. length 30 characters. Allowed characters a-z and a space.
-        :type tags: str
-        :param visibility: public, private, rprotected, pprotected, dprotected, webkiosk, appkiosk or webappkiosk (rprotected = protected by referrer, pprotected = protected by password, dprotected = protected by domain(s))
-        :type visibility: str
-        :param domains: A list of domains seperated by a comma (Note: Visibility must be set to dprotected) Examples: yumpu.com,blog.yumpu.com,developers.yumpu.com yumpu.com
-        :type domains: str
-        :param validity: Valid from and / or valid until Examples: 2013-10-01T00:00:00-2013-10-30T23:59:59 (valid from 2013-10-01 00:00:00, valid until 2013-10-30 23:59:59) 2013-10-01T00:00:00- (valid from 2013-10-01 00:00:00-) -2013-10-30T23:59:59 (valid until -2013-10-30 23:59:59)
-        :type validity: str
-        :param blurred: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
-        :type blurred: str
-        :param page_teaser_image: Image data The image must be less than 2 MB in size. Allowed mime types are image/gif, image/jpeg, image/pjpeg, image/png and image/x-png. The image will be resized to fit in the page dimensions (of your magazine). Note: If you use page_teaser_image, the parameters page_teaser_page_range and page_teaser_url are required.
-        :type page_teaser_image: str
-        :param page_teaser_page_range: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
-        :type page_teaser_page_range: str
-        :param page_teaser_url: A valid URL. Examples: http://www.yumpu.com/en
-        :type page_teaser_url: str
-        :param downloadable: Allow users to download your source pdf file. y or n
-        :type downloadable: str
-        :param detect_elements: Detect elements automatically? y or n
-        :type detect_elements: str
-        :param recommended_magazines: Show recommended magazines on Yumpu? y or n
-        :type recommended_magazines: str
-        :param social_sharing: Show social sharing buttons on Yumpu. y or n
-        :type social_sharing: str
-        :param player_social_sharing: Show social sharing buttons in Yumpu Player. y or n
-        :type player_social_sharing: str
-        :param player_download_pdf: Show button „download pdf“ in Yumpu Player. y or n
-        :type player_download_pdf: str
-        :param player_print_page: Show button „print page“ in Yumpu Player. y or n
-        :type player_print_page: str
-        :param player_branding: Show Yumpu branding in Yumpu Player. y or n
-        :type player_branding: str
-        :param player_sidebar: Show a list of recommended documents in Yumpu Player. y or n
-        :type player_sidebar: str
-        :param player_html5_c2r: Activate HTML5 full screen on Yumpu. y or n
-        :type player_html5_c2r: str
-        :param player_outer_shadow: Drop shadow in Yumpu player. y or n
-        :type player_outer_shadow: str
-        :param player_inner_shadow: Shadow effects on pages. y or n
-        :type player_inner_shadow: str
-        :param player_ga: Activate Google Analytics tracking. A valid UA code from Google Analytics.
-        :type player_ga: str
-        :param access_tags: One or multiple access_tag ids (myid1 or myid1,myid2)
-        :type access_tags: str
-        :param subscriptions: One or multiple subscription ids (myid1 or myid1,myid2)
-        :type subscriptions: str
-        :param iap: Enable In-App Purchase (y or n)
-        :type iap: str
-        :param itc_product_id: iTunes Product ID
-        :type itc_product_id: str
+        :param str title: A title for your document. Min. length 5 characters, max. length 255 characters
+        :param str url: The URL of PDF
+        :param str description: A description for your document. Min. length 5 characters, max. length 2500 characters
+        :param int category: 1, 2 or … (A list of valid category ids: Document categories)
+        :param str language: en, de or … (A list of valid languages: Document languages)
+        :param str tags: A list of words seperated by comma (house,garden,balcony). Min. length 3 characters, max. length 30 characters. Allowed characters a-z and a space.
+        :param str visibility: public, private, rprotected, pprotected, dprotected, webkiosk, appkiosk or webappkiosk (rprotected = protected by referrer, pprotected = protected by password, dprotected = protected by domain(s))
+        :param str domains: A list of domains seperated by a comma (Note: Visibility must be set to dprotected) Examples: yumpu.com,blog.yumpu.com,developers.yumpu.com yumpu.com
+        :param str validity: Valid from and / or valid until Examples: 2013-10-01T00:00:00-2013-10-30T23:59:59 (valid from 2013-10-01 00:00:00, valid until 2013-10-30 23:59:59) 2013-10-01T00:00:00- (valid from 2013-10-01 00:00:00-) -2013-10-30T23:59:59 (valid until -2013-10-30 23:59:59)
+        :param str blurred: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
+        :param str page_teaser_image: Image data The image must be less than 2 MB in size. Allowed mime types are image/gif, image/jpeg, image/pjpeg, image/png and image/x-png. The image will be resized to fit in the page dimensions (of your magazine). Note: If you use page_teaser_image, the parameters page_teaser_page_range and page_teaser_url are required.
+        :param str page_teaser_page_range: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
+        :param str page_teaser_url: A valid URL. Examples: http://www.yumpu.com/en
+        :param str downloadable: Allow users to download your source pdf file. y or n
+        :param str detect_elements: Detect elements automatically? y or n
+        :param str recommended_magazines: Show recommended magazines on Yumpu? y or n
+        :param str social_sharing: Show social sharing buttons on Yumpu. y or n
+        :param str player_social_sharing: Show social sharing buttons in Yumpu Player. y or n
+        :param str player_download_pdf: Show button „download pdf“ in Yumpu Player. y or n
+        :param str player_print_page: Show button „print page“ in Yumpu Player. y or n
+        :param str player_branding: Show Yumpu branding in Yumpu Player. y or n
+        :param str player_sidebar: Show a list of recommended documents in Yumpu Player. y or n
+        :param str player_html5_c2r: Activate HTML5 full screen on Yumpu. y or n
+        :param str player_outer_shadow: Drop shadow in Yumpu player. y or n
+        :param str player_inner_shadow: Shadow effects on pages. y or n
+        :param str player_ga: Activate Google Analytics tracking. A valid UA code from Google Analytics.
+        :param str access_tags: One or multiple access_tag ids (myid1 or myid1,myid2)
+        :param str subscriptions: One or multiple subscription ids (myid1 or myid1,myid2)
+        :param str iap: Enable In-App Purchase (y or n)
+        :param str itc_product_id: iTunes Product ID
         """
         entry_point = '/document/url.json'
-        params = {
-            'title': title,
-            'url': url,
-            'description': description,
-            'category': category,
-            'language': language,
-            'tags': tags,
-            'visibility': visibility,
-            'domains': domains,
-            'validity': validity,
-            'blurred': blurred,
-            'page_teaser_image': page_teaser_image,
-            'page_teaser_page_range': page_teaser_page_range,
-            'page_teaser_url': page_teaser_url,
-            'downloadable': downloadable,
-            'detect_elements': detect_elements,
-            'recommended_magazines': recommended_magazines,
-            'social_sharing': social_sharing,
-            'player_social_sharing': player_social_sharing,
-            'player_download_pdf': player_download_pdf,
-            'player_print_page': player_print_page,
-            'player_branding': player_branding,
-            'player_sidebar': player_sidebar,
-            'player_html5_c2r': player_html5_c2r,
-            'player_outer_shadow': player_outer_shadow,
-            'player_inner_shadow': player_inner_shadow,
-            'player_ga': player_ga,
-            'access_tags': access_tags,
-            'subscriptions': subscriptions,
-            'iap': iap,
-            'itc_product_id': itc_product_id
-        }
-        return self.do_post(entry_point, params)
+        return self.do_post(entry_point, kwargs)
 
-    def document_put(
-        self, id, title,
-        description=None,
-        category=0,
-        language='en',
-        tags=None,
-        visibility='public',
-        domains=None,
-        validity=None,
-        blurred=None,
-        page_teaser_image=None,
-        page_teaser_page_range=None,
-        page_teaser_url=None,
-        downloadable='n',
-        detect_elements='y',
-        recommended_magazines='y',
-        social_sharing='y',
-        player_social_sharing='y',
-        player_download_pdf='n',
-        player_print_page='n',
-        player_branding='y',
-        player_sidebar='n',
-        player_html5_c2r='y',
-        player_outer_shadow='y',
-        player_inner_shadow='y',
-        player_ga=None,
-        access_tags=None,
-        subscriptions=None,
-        iap='n',
-        itc_product_id=None
-    ):
+    def document_put(self, **kwargs):
         """
         Update document on Yumpu.
 
-        :param id: The id of document to update.
-        :type id: int
-        :param title: A title for your document. Min. length 5 characters, max. length 255 characters
-        :type title: str
-        :param description: A description for your document. Min. length 5 characters, max. length 2500 characters
-        :type description: str
-        :param category: 1, 2 or … (A list of valid category ids: Document categories)
-        :type category: int
-        :param language: en, de or … (A list of valid languages: Document languages)
-        :type language: str
-        :param tags: A list of words seperated by comma (house,garden,balcony). Min. length 3 characters, max. length 30 characters. Allowed characters a-z and a space.
-        :type tags: str
-        :param visibility: public, private, rprotected, pprotected, dprotected, webkiosk, appkiosk or webappkiosk (rprotected = protected by referrer, pprotected = protected by password, dprotected = protected by domain(s))
-        :type visibility: str
-        :param domains: A list of domains seperated by a comma (Note: Visibility must be set to dprotected) Examples: yumpu.com,blog.yumpu.com,developers.yumpu.com yumpu.com
-        :type domains: str
-        :param validity: Valid from and / or valid until Examples: 2013-10-01T00:00:00-2013-10-30T23:59:59 (valid from 2013-10-01 00:00:00, valid until 2013-10-30 23:59:59) 2013-10-01T00:00:00- (valid from 2013-10-01 00:00:00-) -2013-10-30T23:59:59 (valid until -2013-10-30 23:59:59)
-        :type validity: str
-        :param blurred: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
-        :type blurred: str
-        :param page_teaser_image: Image data The image must be less than 2 MB in size. Allowed mime types are image/gif, image/jpeg, image/pjpeg, image/png and image/x-png. The image will be resized to fit in the page dimensions (of your magazine). Note: If you use page_teaser_image, the parameters page_teaser_page_range and page_teaser_url are required.
-        :type page_teaser_image: str
-        :param page_teaser_page_range: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
-        :type page_teaser_page_range: str
-        :param page_teaser_url: A valid URL. Examples: http://www.yumpu.com/en
-        :type page_teaser_url: str
-        :param downloadable: Allow users to download your source pdf file. y or n
-        :type downloadable: str
-        :param detect_elements: Detect elements automatically? y or n
-        :type detect_elements: str
-        :param recommended_magazines: Show recommended magazines on Yumpu? y or n
-        :type recommended_magazines: str
-        :param social_sharing: Show social sharing buttons on Yumpu. y or n
-        :type social_sharing: str
-        :param player_social_sharing: Show social sharing buttons in Yumpu Player. y or n
-        :type player_social_sharing: str
-        :param player_download_pdf: Show button „download pdf“ in Yumpu Player. y or n
-        :type player_download_pdf: str
-        :param player_print_page: Show button „print page“ in Yumpu Player. y or n
-        :type player_print_page: str
-        :param player_branding: Show Yumpu branding in Yumpu Player. y or n
-        :type player_branding: str
-        :param player_sidebar: Show a list of recommended documents in Yumpu Player. y or n
-        :type player_sidebar: str
-        :param player_html5_c2r: Activate HTML5 full screen on Yumpu. y or n
-        :type player_html5_c2r: str
-        :param player_outer_shadow: Drop shadow in Yumpu player. y or n
-        :type player_outer_shadow: str
-        :param player_inner_shadow: Shadow effects on pages. y or n
-        :type player_inner_shadow: str
-        :param player_ga: Activate Google Analytics tracking. A valid UA code from Google Analytics.
-        :type player_ga: str
-        :param access_tags: One or multiple access_tag ids (myid1 or myid1,myid2)
-        :type access_tags: str
-        :param subscriptions: One or multiple subscription ids (myid1 or myid1,myid2)
-        :type subscriptions: str
-        :param iap: Enable In-App Purchase (y or n)
-        :type iap: str
-        :param itc_product_id: iTunes Product ID
-        :type itc_product_id: str
+        :param int id: The id of document to update.
+        :param str title: A title for your document. Min. length 5 characters, max. length 255 characters
+        :param str description: A description for your document. Min. length 5 characters, max. length 2500 characters
+        :param int category: 1, 2 or … (A list of valid category ids: Document categories)
+        :param str language: en, de or … (A list of valid languages: Document languages)
+        :param str tags: A list of words seperated by comma (house,garden,balcony). Min. length 3 characters, max. length 30 characters. Allowed characters a-z and a space.
+        :param str visibility: public, private, rprotected, pprotected, dprotected, webkiosk, appkiosk or webappkiosk (rprotected = protected by referrer, pprotected = protected by password, dprotected = protected by domain(s))
+        :param str domains: A list of domains seperated by a comma (Note: Visibility must be set to dprotected) Examples: yumpu.com,blog.yumpu.com,developers.yumpu.com yumpu.com
+        :param str validity: Valid from and / or valid until Examples: 2013-10-01T00:00:00-2013-10-30T23:59:59 (valid from 2013-10-01 00:00:00, valid until 2013-10-30 23:59:59) 2013-10-01T00:00:00- (valid from 2013-10-01 00:00:00-) -2013-10-30T23:59:59 (valid until -2013-10-30 23:59:59)
+        :param str blurred: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
+        :param str page_teaser_image: Image data The image must be less than 2 MB in size. Allowed mime types are image/gif, image/jpeg, image/pjpeg, image/png and image/x-png. The image will be resized to fit in the page dimensions (of your magazine). Note: If you use page_teaser_image, the parameters page_teaser_page_range and page_teaser_url are required.
+        :param str page_teaser_page_range: Page numbers seperated by comma. Examples: 1-2, 5-9, 11-
+        :param str page_teaser_url: A valid URL. Examples: http://www.yumpu.com/en
+        :param str downloadable: Allow users to download your source pdf file. y or n
+        :param str detect_elements: Detect elements automatically? y or n
+        :param str recommended_magazines: Show recommended magazines on Yumpu? y or n
+        :param str social_sharing: Show social sharing buttons on Yumpu. y or n
+        :param str player_social_sharing: Show social sharing buttons in Yumpu Player. y or n
+        :param str player_download_pdf: Show button „download pdf“ in Yumpu Player. y or n
+        :param str player_print_page: Show button „print page“ in Yumpu Player. y or n
+        :param str player_branding: Show Yumpu branding in Yumpu Player. y or n
+        :param str player_sidebar: Show a list of recommended documents in Yumpu Player. y or n
+        :param str player_html5_c2r: Activate HTML5 full screen on Yumpu. y or n
+        :param str player_outer_shadow: Drop shadow in Yumpu player. y or n
+        :param str player_inner_shadow: Shadow effects on pages. y or n
+        :param str player_ga: Activate Google Analytics tracking. A valid UA code from Google Analytics.
+        :param str access_tags: One or multiple access_tag ids (myid1 or myid1,myid2)
+        :param str subscriptions: One or multiple subscription ids (myid1 or myid1,myid2)
+        :param str iap: Enable In-App Purchase (y or n)
+        :param str itc_product_id: iTunes Product ID
         """
         entry_point = '/document.json'
-        params = {
-            'id': id,
-            'title': title,
-            'description': description,
-            'category': category,
-            'language': language,
-            'tags': tags,
-            'visibility': visibility,
-            'domains': domains,
-            'validity': validity,
-            'blurred': blurred,
-            'page_teaser_image': page_teaser_image,
-            'page_teaser_page_range': page_teaser_page_range,
-            'page_teaser_url': page_teaser_url,
-            'downloadable': downloadable,
-            'detect_elements': detect_elements,
-            'recommended_magazines': recommended_magazines,
-            'social_sharing': social_sharing,
-            'player_social_sharing': player_social_sharing,
-            'player_download_pdf': player_download_pdf,
-            'player_print_page': player_print_page,
-            'player_branding': player_branding,
-            'player_sidebar': player_sidebar,
-            'player_html5_c2r': player_html5_c2r,
-            'player_outer_shadow': player_outer_shadow,
-            'player_inner_shadow': player_inner_shadow,
-            'player_ga': player_ga,
-            'access_tags': access_tags,
-            'subscriptions': subscriptions,
-            'iap': iap,
-            'itc_product_id': itc_product_id
-        }
-        return self.do_put(entry_point, params)
+        return self.do_put(entry_point, kwargs)
 
     def document_delete(self, id):
         """
