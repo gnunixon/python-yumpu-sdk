@@ -21,8 +21,7 @@ class Yumpu():
         """
         For begin working with Yumpu you need to specify your token.
 
-        :params token: the token for working with API. You can obtain it on https://www.yumpu.com/en/account/profile/api
-        :type token: str
+        :params str token: the token for working with API. You can obtain it on https://www.yumpu.com/en/account/profile/api
 
         :Example:
 
@@ -41,10 +40,8 @@ class Yumpu():
         customized requests to API, but in general case you don't need
         to use this method ever.
 
-        :param entry_point: relative url for sending request
-        :type entry_point: str
-        :param params: a dict with GET params to send
-        :type params: dict
+        :param str entry_point: relative url for sending request
+        :param dict params: a dict with GET params to send
         :returns: the result of request
         :rtype: json
         """
@@ -58,12 +55,9 @@ class Yumpu():
         It's a very general function, and is better to use somthing more
         specific.
 
-        :param entry_point: the URL where we will send the datas
-        :type entry_point: str
-        :param params: a dict of fields and values for sending
-        :type params: dict
-        :param filename: an absolute path to file for sending
-        :type filename: str
+        :param str entry_point: the URL where we will send the datas
+        :param dict params: a dict of fields and values for sending
+        :param str filename: an absolute path to file for sending
         :returns: a response with detailed data of resulted action
         :rtype: json
         """
@@ -78,10 +72,8 @@ class Yumpu():
         """
         This is a general function for deleting things on Yumpu.
 
-        :param entry_point: the relative url for send request to delete items
-        :type entry_point: str
-        :param id: the id of deleting item
-        :type id: int or str
+        :param str entry_point: the relative url for send request to delete items
+        :param str id: the id of deleting item
         :returns: the result of deleting action
         :rtype: json
         """
@@ -95,10 +87,8 @@ class Yumpu():
         This is a general function for send PUT requests to Yumpu API.
         Is used by other functions for update things on Yumpu.
 
-        :param entry_point: the relative path where to send datas
-        :type entry_point: str
-        :param params: the params to send
-        :type params: dict
+        :param str entry_point: the relative path where to send datas
+        :param dict params: the params to send
         :returns: the result of request
         :rtype: json
         """
@@ -110,14 +100,10 @@ class Yumpu():
         """
         Retrieve a list of your documents.
 
-        :param offset: Retrieve rows at position X (min. 0). Default is 0.
-        :type offset: int
-        :param limit: Retrieve X rows (min. 0 and max. 100). Default is 10.
-        :type limit: int
-        :param sort: Sort results ascending or descendening (asc or desc). Default is desc.
-        :type sort: str
-        :param return_fields: Customize the responses by setting the return fields (id, create_date, update_date, url, short_url, image_small, image_medium, image_big, language, title, description, tags, embed_code, settings)
-        :type return_fields: list
+        :param int offset: Retrieve rows at position X (min. 0). Default is 0.
+        :param int limit: Retrieve X rows (min. 0 and max. 100). Default is 10.
+        :param str sort: Sort results ascending or descendening (asc or desc). Default is desc.
+        :param list return_fields: Customize the responses by setting the return fields (id, create_date, update_date, url, short_url, image_small, image_medium, image_big, language, title, description, tags, embed_code, settings)
         :returns: list of documents
         :rtype: json
 
