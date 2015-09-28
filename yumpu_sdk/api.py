@@ -373,6 +373,142 @@ class Yumpu():
         }
         return self.do_get(entry_point, params)
 
+    def __document_hotspots_get(self, id, page=None, offset=0, limit=10,
+                              sort='page_asc',
+                              return_fields=[]):
+        """
+        Retrieve a list of your document hotspots.
+
+        :param int id: the id of one of your documents
+        :param int page: filter the results by page number (1-X)
+        :param int offset: Retrieve rows at position X (min. 0)
+        :param int limit: Retrieve X rows (min. 0 and max. 100)
+        :param str sort: Sort results by create_date_desc, create_date_asc, page_desc, page_asc
+        :param list return_fields: Customize the responses by setting the return fields (id, page, type, settings, create_date, update_date)
+        :rtype: json
+        """
+        entry_point = '/document/hotsposts.json'
+        params = {
+            'id': id,
+            'page': page,
+            'offset': offset,
+            'limit': limit,
+            'sort': sort
+        }
+        if return_fields:
+            params['return_fields'] = ','.join(return_fields)
+        return self.do_get(entry_point, params)
+
+    def document_hotspot_get(self, id,
+                             return_fields=[
+                                 'id', 'document_id', 'page', 'type',
+                                 'settings', 'create_date', 'update_date'
+                             ]):
+        """
+        Retrieve a document hotspot
+
+        :param str id: One of your document hotspot ids
+        :param list return_fields: Customize the responses by setting the return fields (id, document_id, page, type, settings, create_date, update_date)Customize the responses by setting the return fields (id, document_id, page, type, settings, create_date, update_date)
+        :rtype: json
+        """
+        entry_point = '/document/hotspot.json'
+        params = {
+            'id': id
+        }
+        if return_fields:
+            params['return_fields'] = ','.join(return_fields)
+        return self.do_get(entry_point, params)
+
+    def __document_hotspot_post(self, document_id, page, type, sx, sy, sw, sh,
+                              sname, stooltip, slink, ssource, ssource_id=None,
+                              ssource_url=None, sautoplay='n'):
+        """
+        Create a new document hotspot.
+
+        :param int document_id: One of your document ids
+        :param str page: Page number (1-X)
+        :param str type: Type can be link, video, audio or slideshow
+        :param int sx: x position of the document hotspot
+        :param int sy: y position of the document hotspot
+        :param int sw: width of the document hotspot
+        :param int sh: height of the document hotspot
+        :param str sname: a name for the document hotspot (min. length 5, max. length 50)
+        :param str stooltip: a tooltip for the document hotspot (min. length 5, max. length 50)
+        :param str slink: a url (valid URL)
+        :param str ssource: youtube, vimeo, flickr, soundcloud
+        :param str ssource_id: youtube: a valid youtube video id vimeo: a valid vimeo video id flickr: a valid flickr id
+        :param str ssource_url: soundcloud: a valid soundcloud url
+        :param str sautoplay: y or n
+        :rtype: json
+        """
+        entry_point = '/document/hotspot.json'
+        params = {
+            'document_id': document_id,
+            'page': page,
+            'type': type,
+            'settings[x]': sx,
+            'settings[y]': sy,
+            'settings[w]': sw,
+            'settings[h]': sh,
+            'settings[name]': sname,
+            'settings[tooltip]': stooltip,
+            'settings[link]': slink,
+            'settings[source]': ssource,
+            'settings[source_id]': ssource_id,
+            'settings[source_url]': ssource_url,
+            'settings[autoplay]': sautoplay
+        }
+        return self.do_post(entry_point, params)
+
+    def __document_hotspot_put(self, id, page, type, sx, sy, sw, sh,
+                             sname, stooltip, slink, ssource, ssource_id=None,
+                             ssource_url=None, sautoplay=None):
+        """
+        Update a document hotspot.
+
+        :param str id: One of your document hotspot ids
+        :param str type: Type can be link, video, audio or slideshow
+        :param int sx: x position of the document hotspot
+        :param int sy: y position of the document hotspot
+        :param int sw: width of the document hotspot
+        :param int sh: height of the document hotspot
+        :param str sname: a name for the document hotspot (min. length 5, max. length 50)
+        :param str stooltip: a tooltip for the document hotspot (min. length 5, max. length 50)
+        :param str slink: a url (valid URL)
+        :param str ssource: youtube, vimeo, flickr, soundcloud
+        :param str ssource_id: youtube: a valid youtube video id vimeo: a valid vimeo video id flickr: a valid flickr id
+        :param str ssource_url: soundcloud: a valid soundcloud url
+        :param str sautoplay: y or n
+        :rtype: json
+        """
+        entry_point = '/document/hotspot.json'
+        params = {
+            'id': id,
+            'type': type,
+            'settings[x]': sx,
+            'settings[y]': sy,
+            'settings[w]': sw,
+            'settings[h]': sh,
+            'settings[name]': sname,
+            'settings[tooltip]': stooltip,
+            'settings[link]': slink,
+            'settings[source]': ssource,
+            'settings[source_id]': ssource_id,
+            'settings[source_url]': ssource_url,
+            'settings[autoplay]': sautoplay
+        }
+        return self.do_put(entry_point, params)
+
+    def document_hotspot_delete(self, id):
+        """
+        Delete one document hotspot.
+
+        :param str id: One of your document hotspot ids
+        :rtype: json
+        """
+        entry_point = '/document/hotspot.json'
+        return self.do_delete(entry_point, id)
+
     def categories_get(self):
         """
         Get the list of categories.
