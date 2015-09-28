@@ -32,6 +32,10 @@ Implemented features
     * Get info about progress of uploading acction
     * Edit a document
     * Delete document
+* Hotspots
+    * Get all hotspots in a document
+    * Get a particular hotspot
+    * Delete a hotspot
 * Get list of available countries
 * Get list of available languages
 * Get list of available categories
@@ -48,6 +52,7 @@ Implemented features
     * Delete section
     * Assign document(s) to section
     * Remove document(s) from section
+* Search
 
 
 Documentation
