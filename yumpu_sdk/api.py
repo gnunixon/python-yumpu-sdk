@@ -3,6 +3,7 @@ import requests
 
 
 BASE_URL = 'http://api.yumpu.com/2.0'
+SEARCH_URL = 'http://search.yumpu.com/2.0'
 
 
 class Yumpu():
@@ -33,7 +34,7 @@ class Yumpu():
         self.token = token
         self.headers = {'X-ACCESS-TOKEN': self.token}
 
-    def do_get(self, entry_point, params={}):
+    def do_get(self, entry_point, params={}, uri=BASE_URL):
         """
         This function is for getting information from API. It's a general
         function and you can use it for make strange things like send very
@@ -45,11 +46,11 @@ class Yumpu():
         :returns: the result of request
         :rtype: json
         """
-        url = "%s%s" % (BASE_URL, entry_point)
+        url = "%s%s" % (uri, entry_point)
         r = requests.get(url, headers=self.headers, params=params)
         return r.json()
 
-    def do_post(self, entry_point, params={}, filename=None):
+    def do_post(self, entry_point, params={}, filename=None, uri=BASE_URL):
         """
         This is a general function for post something to Yumpu API.
         It's a very general function, and is better to use somthing more
@@ -61,14 +62,14 @@ class Yumpu():
         :returns: a response with detailed data of resulted action
         :rtype: json
         """
-        url = "%s%s" % (BASE_URL, entry_point)
+        url = "%s%s" % (uri, entry_point)
         files = None
         if filename:
             files = {'file': open(filename, 'rb')}
         r = requests.post(url, headers=self.headers, data=params, files=files)
         return r.json()
 
-    def do_delete(self, entry_point, id):
+    def do_delete(self, entry_point, id, uri=BASE_URL):
         """
         This is a general function for deleting things on Yumpu.
 
@@ -77,12 +78,12 @@ class Yumpu():
         :returns: the result of deleting action
         :rtype: json
         """
-        url = "%s%s" % (BASE_URL, entry_point)
+        url = "%s%s" % (uri, entry_point)
         params = {'id': id}
         r = requests.delete(url, headers=self.headers, data=params)
         return r.json()
 
-    def do_put(self, entry_point, params={}):
+    def do_put(self, entry_point, params={}, uri=BASE_URL):
         """
         This is a general function for send PUT requests to Yumpu API.
         Is used by other functions for update things on Yumpu.
@@ -92,7 +93,7 @@ class Yumpu():
         :returns: the result of request
         :rtype: json
         """
-        url = "%s%s" % (BASE_URL, entry_point)
+        url = "%s%s" % (uri, entry_point)
         r = requests.put(url, headers=self.headers, data=params)
         return r.json()
 
@@ -889,3 +890,48 @@ class Yumpu():
         url = "%s%s" % (BASE_URL, entry_point)
         r = requests.delete(url, headers=self.headers, data=params)
         return r.json()
+
+    def search(self, q, in_=['author', 'title', 'description', 'tags'],
+               op='or', offset=0, limit=10,
+               return_fields=[
+                   'id', 'url', 'short_url', 'image_small', 'image_medium',
+                   'image_big', 'language', 'title', 'description', 'tags',
+                   'embed_code'
+               ],
+               sort=None, language=None, pages=None, heat_rank=None,
+               views=None, create_date=None, category=None):
+        """
+        Search documents
+
+        :param str q: A keyword to search for
+        :param list in_: Search keyword in fields author, title, description or tags
+        :param str op: Search keyword with „and“ or „or“ operator
+        :param int offset: Retrieve rows at position X (min. 0)
+        :param int limit: Retrieve X rows (min. 0 and max. 100)
+        :param list return_fields: Customize the responses by setting the return fields (id, url, short_url, image_small, image_medium, image_big, language, title, description, tags, embed_code)
+        :param str sort: Sort results (views_desc, views_asc, create_date_desc, create_date_asc, heat_rank_desc, heat_rank_asc, pages_desc, pages_asc)
+        :param str language: Filter result (de, en, …)
+        :param str pages: Filter result from 10 to 20 pages (10-20) or exact 30 pages (30)
+        :param str heat_rank: Filter result from 50 to 100 heat_rank (50-100) or exact 80 heat_rank (80)
+        :param str views: Filter result with 500 to 1000 views (500-1000) or exact 800 views (800)
+        :param str create_date: Filter result which got created from 2013-09-01 between 2013-09-30 (2013-09-01-2013-09-30) or on an exact date 2013-09-01 (2013-09-01)
+        :param int category: Filter result (1, 2, …)
+        :rtype: json
+        """
+        entry_point = '/search.json'
+        params = {
+            'q': q,
+            'op': op,
+            'sort': sort,
+            'language': language,
+            'pages': pages,
+            'heat_rank': heat_rank,
+            'views': views,
+            'create_date': create_date,
+            'category': category
+        }
+        if in_:
+            params['in'] = ','.join(in_)
+        if return_fields:
+            params['return_fields'] = ','.join(return_fields)
+        return self.do_get(entry_point, params, SEARCH_URL)
