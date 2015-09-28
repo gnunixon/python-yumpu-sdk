@@ -374,7 +374,7 @@ class Yumpu():
         }
         return self.do_get(entry_point, params)
 
-    def __document_hotspots_get(self, id, page=None, offset=0, limit=10,
+    def document_hotspots_get(self, id, page=None, offset=0, limit=10,
                               sort='page_asc',
                               return_fields=[]):
         """
@@ -388,7 +388,7 @@ class Yumpu():
         :param list return_fields: Customize the responses by setting the return fields (id, page, type, settings, create_date, update_date)
         :rtype: json
         """
-        entry_point = '/document/hotsposts.json'
+        entry_point = '/document/hotspots.json'
         params = {
             'id': id,
             'page': page,
@@ -420,9 +420,9 @@ class Yumpu():
             params['return_fields'] = ','.join(return_fields)
         return self.do_get(entry_point, params)
 
-    def __document_hotspot_post(self, document_id, page, type, sx, sy, sw, sh,
-                              sname, stooltip, slink, ssource, ssource_id=None,
-                              ssource_url=None, sautoplay='n'):
+    def __document_hotspot_post(self, document_id, page, type_, sx, sy, sw, sh,
+                                sname, stooltip, slink=None, ssource=None,
+                                ssource_id=None, ssource_url=None, sautoplay='n'):
         """
         Create a new document hotspot.
 
@@ -446,7 +446,7 @@ class Yumpu():
         params = {
             'document_id': document_id,
             'page': page,
-            'type': type,
+            'type': type_,
             'settings[x]': sx,
             'settings[y]': sy,
             'settings[w]': sw,
