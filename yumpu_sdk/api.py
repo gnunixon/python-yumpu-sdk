@@ -935,3 +935,61 @@ class Yumpu():
         if return_fields:
             params['return_fields'] = ','.join(return_fields)
         return self.do_get(entry_point, params, SEARCH_URL)
+
+    def user_get(self, return_fields=[]):
+        """
+        Retrieve your user profile data.
+
+        :param list return_fields: Customize the responses by setting the return fields (id, create_date, activate_date, last_login_date, username, email, gender, name, firstname, lastname, birth_date, address, zip_code, city, country, description, website, blog, language)
+        :rtype: json
+        """
+        entry_point = '/user.json'
+        params = {}
+        if return_fields:
+            params['return_fields'] = ','.join(return_fields)
+        return self.do_get(entry_point, params)
+
+    def user_put(self, **kwargs):
+        """
+        Update your profile.
+
+        :param str gender: Your gender (male or female)
+        :param str firstname: Your firstname (min. length 2 characters, max. length 100 characters)
+        :param str lastname: Your lastname (min. length 2 characters, max. length 100 characters)
+        :param str birth_date: Your birth_date (YYYY-MM-DD)
+        :param str address: Your address (max. length 255 characters)
+        :param str zip_code: Your zip code (max. length 10 characters)
+        :param str city: Your city (max. length 50 characters)
+        :param str country: Your country (DE, GB, FR, …)
+        :param str description: Your address (max. length 255 characters)
+        :param str website: Your website (max. length 255 characters, valid URL)
+        :param str blog: Your blog (max. length 255 characters, valid URL)
+        :param str language: Your language (de, en, fr, …)
+        :rtype: json
+        """
+        entry_point = '/user.json'
+        return self.do_put(entry_point, kwargs)
+
+    def user_post(self, **kwargs):
+        """
+        Create a new user profile.
+
+        :param str email: Your email address (valid email address)
+        :param str username: Your username (Allowed characters a-z, A-Z, 0-9 and a dot, min. length 5 characters, max. length 30 characters)
+        :param str password: Your password (min. length 6 characters)
+        :param str gender: Your gender (male or female)
+        :param str firstname: Your firstname (min. length 2 characters, max. length 100 characters)
+        :param str lastname: Your lastname (min. length 2 characters, max. length 100 characters)
+        :param str birth_date: Your birth_date (YYYY-MM-DD)
+        :param str address: Your address (max. length 255 characters)
+        :param str zip_code: Your zip code (max. length 10 characters)
+        :param str city: Your city (max. length 50 characters)
+        :param str country: Your country (DE, GB, FR, …)
+        :param str description: Your address (max. length 255 characters)
+        :param str website: Your website (max. length 255 characters, valid URL)
+        :param str blog: Your blog (max. length 255 characters, valid URL)
+        :param str language: Your language (de, en, fr, …)
+        :rtype: json
+        """
+        entry_point = '/user.json'
+        return self.do_post(entry_point, kwargs)
